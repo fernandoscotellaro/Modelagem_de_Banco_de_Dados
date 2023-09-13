@@ -1,0 +1,9 @@
+create database escola;
+
+use escola;
+
+create table Aluno ( matricula int primary key auto_increment, nome varchar(80) not null, nascimento date, cpf char(14) not null unique, responsavel varchar(80) not null, email varchar(80) unique);
+
+insert into aluno values ( null, 'José Bezerra', '2007-04-30', '197.654.987.95', 'Hudson Bezerra', 'voltacinderela@hotmail.com' );
+Query OK, 1 row affected (0.00 sec)
+
