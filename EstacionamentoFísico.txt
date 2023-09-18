@@ -1,0 +1,5 @@
+create database Estacionamento
+create table Veiculo ( idVeiculo int primary key auto_increment, fabricante varchar(50) not null. modelo varchar(80) not null, placa char(7) not null unique );
+insert into veiculo values ( '0154', 'Volkswagen', 'Virtus ComfortLine 200TSI', 'RIY6H62' );
+alter table cadastro_veicular add cor varchar(15) not null unique after modelo;
+alter table cadastro_veicular modify cor char(8) not null unique;

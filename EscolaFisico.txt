@@ -5,5 +5,25 @@ use escola;
 create table Aluno ( matricula int primary key auto_increment, nome varchar(80) not null, nascimento date, cpf char(14) not null unique, responsavel varchar(80) not null, email varchar(80) unique);
 
 insert into aluno values ( null, 'José Bezerra', '2007-04-30', '197.654.987.95', 'Hudson Bezerra', 'voltacinderela@hotmail.com' );
-Query OK, 1 row affected (0.00 sec)
+
+--------------------------------------------------------------------------------------------------------
+
+create table Disciplina ( cod_disciplina int primary key auto_increment, nome varchar(30) not null );
+
+insert into disciplina values ( null, 'Língua Portuguesa' );
+
+
+-------------------------------------------------------------------------------------------------------
+
+create table Estuda ( idEstuda int primary key auto_increment, fk_Aluno_matricula int not null, fk_Turma_numero int not null );
+
+alter table Estuda add constraint fkmat foreign key (fk_Aluno_matricula) references Aluno (matricula);
+alter table Estuda add constraint fknum foreign key (fk_Turma_numero) references Turma (numero);
+alter table Possui add constraint fkdisccodigo foreign key (fk_Disciplina_cod_disciplina) references Disciplina (cod_disciplina);
+
+--------------------------------------------------------------------------------------------------------
+
+
+
+
 
