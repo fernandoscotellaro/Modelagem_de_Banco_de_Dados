@@ -23,6 +23,29 @@ alter table Possui add constraint fkdisccodigo foreign key (fk_Disciplina_cod_di
 
 --------------------------------------------------------------------------------------------------------
 
+use escola;
+
+show tables;
+
+insert into aluno values ( null, 'Ana Carolina Souza', '1974-09-08', '197.654.986-78', 'Aparecida de Souza', 'anacarolcantora@gmail.com');
+insert into turma values ( 2023080, 'M', 'Técnico de Informática');
+insert into turma values ( 2023093, 'T', 'Técnico de Comunicação Visual' );
+
+
+desc disciplina;
+
+insert into disciplina values ( null, 'Redes' );
+insert into disciplina values ( null, 'Tratamento de imagem' );
+insert into disciplina values ( null, 'Programação' );
+
+
+desc professor;
+
+insert into professor values ( 10, 'Sérgio Reis', 'Informática' );
+insert into professor values ( null, 'Vicente Carvalho', 'Informática' );
+insert into professor values ( null, 'Flávia Albuquerque', 'Comunicação' );
+
+
 
 
 

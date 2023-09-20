@@ -3,3 +3,4 @@ create table Veiculo ( idVeiculo int primary key auto_increment, fabricante varc
 insert into veiculo values ( '0154', 'Volkswagen', 'Virtus ComfortLine 200TSI', 'RIY6H62' );
 alter table cadastro_veicular add cor varchar(15) not null unique after modelo;
 alter table cadastro_veicular modify cor char(8) not null unique;
+alter table Veículo change fabricante marca varchar(80) not null;
