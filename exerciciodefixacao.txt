@@ -1,35 +1,40 @@
 #1#
-select nome, email from aluno where email is not null;
+select nome, email from aluno where email is not null; CORRETA! 👍
 
 #2#
-select nome from professor where formacao = 'T.I' order by nome asc;
+select nome from professor where formacao = 'T.I' order by nome asc; CORRETA! 👍
 
-#3#
-select nome from aluno where matricula between 3004 and 3008;
+#3# EXIBA AS INFORMAÇÕES DE TODOS OS ALUNOS DE MATRÍCULA ENTRE 3004 E 3008;
+select nome from aluno where matricula between 3004 and 3008; ERRADA!👎
 
-#4#
-select numero from turma where definicao = (Técnico de Informática);
+select * from aluno where matricula between 3004 and 3008; CORRETA!👍
 
-#5#
-select disciplina.nome from disciplina, possui where cod.disciplina = fk_Disciplina_cod_disciplina and fk_Turma_numero = 2023080;
+#4# EXIBIR OS NÚMEROS DAS TURMA DE T.I
+select numero from turma where definicao = ('Técnico de Informática'); CORRETA!👍
 
-#6# 
-select count(definicao) from turma where definicao = 'Técnico de Informática';
+#5# EXIBIR TODAS AS DISCIPLINAS DA TURMA DE T.I
+select disciplina.nome from disciplina, possui where cod_disciplina = fk_Disciplina_cod_disciplina and fk_Turma_numero = 2023080;
+CORRETA! 👍
 
-#7#
-select nome from aluno where year(nascimento) = 2000;
+#6# EXIBIR NÚMERO DA QUANTIDADE DAS TURMAS DE T.I
+select count(definicao) from turma where definicao = 'Técnico de Informática'; 👍
 
-#8#
-select nome, nascimento from aluno where month(nascimento) = 11;
+#7# EXIBA O NOME DE TODOS OS ALUNOS QUE NASCERAM ANO DE 2000
+select nome from aluno where year(nascimento) = 2000;👍
 
-#9#
-select nome from professor where formacao = 'T.I' order by nome asc;select nome from professor where formacao = 'T.I' order by nome asc;select nome from professor where formacao = 'T.I' order by nome asc;
+#8# EXIBA O NOME E A DATA DE NASCIMENTO DOS ALUNOS NASCIDOS NO MÊS DE SETEMBRO
+select nome, nascimento from aluno where month(nascimento) = 11; 👍
 
-#10#
-select disciplina.nome from disciplina, possui where cod_disciplina = fk_Disciplina_cod_disciplina and fk_Turma_numero = 2023090;
+#9# EXIBA O CPF E O NOME DOS PROFESSORES DE FORMAÇÃO DE T.I EM ORDEM ALFABÉTICA
+select cpf, nome from professor where formacao = 'T.I' order by nome asc; 👍
 
-#11#
-select nome from professor where formacao = 'T.I';
+#10# 
+select disciplina.nome from disciplina, possui where cod_disciplina = fk_Disciplina_cod_disciplina and fk_Turma_numero = 2023090; 👍
+
+#11# EXIBA O NOME DOS PROFESSORES DE FORMAÇÃO DE T.I
+select nome from professor where formacao = 'T.I'; ERRADA! 👎
+
+select professor.nome from turma, possui, disciplina, leciona, professor where turma.numero = possui.fk_Turma_numero and possui.fk_Disciplina_cod_disciplina = disciplina.cod_disciplina and disciplina.cod_disciplina = leciona.fk_Disciplina_cod_disciplina and leciona.fk_Professor_matricula = professor.matricula and turma.definicao = 'Técnico de Informática'; CORRETA!👍
 
 #12#
 select aluno.nome from aluno, estuda, possui, leciona where aluno.matricula = fk_Aluno_matricula and fk_Aluno_matricula = estuda.fk_Aluno_matricula and estuda.fk_Turma_numero = 2023080 and possui.fk_Disciplina_cod_disciplina = 22 and leciona.fk_Disciplina_cod_disciplina = 22 and leciona.fk_Professor_matricula = 1902;
@@ -43,13 +48,13 @@ select professor.nome, turma.turno from professor, leciona, disciplina, possui, 
 #15#
  select professor.nome, turma.definicao from professor, leciona, disciplina, possui, turma where professor.matricula = leciona.fk_Professor_matricula and leciona.fk_Disciplina_cod_disciplina = Disciplina.cod_disciplina and Disciplina.cod_disciplina = possui.fk_Disciplina_cod_disciplina and possui.fk_turma_numero = turma.numero and definicao = 'Técnico de Informática' and dependentes >= 1;
 
-#16#
+#16# EXIBA AS INFORMAÇÕES DA DISCIPLINA QUE TENHA "PROGRAMÇÃO" EM SEU NOME
 select * from disciplina where nome like '%Programação%';
 
-#17#
+#17# EXIBA O NOME E O E-MAIL DOS PROFESSORES DE MATRÍCULA 1904 E 1902
 select nome, email from professor where matricula in (1904, 1902);
 
-#18#
+#18# EXIBA NA TELA A PALAVRA "PROFESSOR" SEGUIDA DO NOME DELE E A PALAVRA "FORMAÇÃO" SEGUIDA DA FORMAÇÃO DELE
 select concat('Professor: ', nome, ' - Formação: ', formacao) from professor;
 
 

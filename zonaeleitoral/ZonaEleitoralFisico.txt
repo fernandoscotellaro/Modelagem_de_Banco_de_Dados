@@ -1,0 +1,115 @@
+create database ZE;
+
+use ZE;
+
+
+
+create table Eleitor ( numEleitor int primary key, nome varchar(100) not null, identidade int not null, fk_SecaoEleitoral_numeroSecao int not null);
+
+create table SecaoEleitoral ( numeroSecao int primary key, descricao varchar(25), fk_ZonaEleitoral_NumeroZE int not null) ;
+
+create table ZonaEleitoral ( numeroZE int primary key, nomeZE varchar(25) not null, fk_Localidade_IdLocalidade int not null) ;
+
+create table Localidade ( idLocalidade int primary key auto_increment, nomeLocalidade varchar(80) not null) ;
+
+create table CargoPolitico ( idCargoPolitico int primary key auto_increment, nomeCargo varchar(40) not null, fk_Localidade_idLocalidade int not null) ;
+
+create table Candidato ( numeroCandidato int(6) primary key, nome varchar(80) not null, apelido varchar(20), fk_CargoPolitico_idCargoPolitico int, fk_PartidoPolitico_sigla varchar(10) ) ;
+
+create table PartidoPolitico ( sigla varchar(10) primary key, nome varchar(80) not null, numero int(2) not null);
+
+
+
+alter table Eleitor add constraint fkNumeroSecao foreign key (fk_SecaoEleitoral_numeroSecao) references secaoEleitoral (numeroSecao) ;
+
+alter table SecaoEleitoral add constraint fkNumeroZE foreign key (fk_ZonaEleitoral_NumeroZE) references ZonaEleitoral (numeroZE) ;
+
+alter table zonaEleitoral add constraint fkLocalidade foreign key (fk_Localidade_IdLocalidade) references Localidade ( idLocalidade ) ;
+
+alter table cargoPolitico add constraint fkLocalidade2 foreign key ( fk_Localidade_idLocalidade ) references Localidade ( idLocalidade ) ;
+
+alter table Candidato add constraint fkCargoPolitico foreign key ( fk_CargoPolitico_idCargoPolitico ) references CargoPolitico ( idCargoPolitico ) ;
+
+alter table candidato add constraint fkSigla foreign key ( fk_PartidoPolitico_sigla ) references partidoPolitico ( sigla ) ;
+
+
+
+insert into localidade values ( null, 'Rio de Janeiro' );
+
+insert into localidade values ( null, 'Niteroi' );
+
+
+
+insert into ZonaEleitoral values ( 11, 'Maracana', 1 );
+
+insert into ZonaEleitoral values ( 12, 'Ipanema', 1 );
+
+insert into ZonaEleitoral values ( 13, 'Sao Francisco', 2 );
+
+
+
+insert into secaoEleitoral values ( 101, 'primeira', 11 );
+
+insert into secaoEleitoral values ( 102, 'segunda', 11 );
+
+insert into secaoEleitoral values ( 103, 'terceira', 12 );
+
+insert into secaoEleitoral values ( 104, 'quarta', 12 );
+
+insert into secaoEleitoral values ( 105, 'quinta', 13 );
+
+insert into secaoEleitoral values ( 106, 'sexta', 13 );
+
+insert into secaoEleitoral values ( 107, 'setima', 13 );
+
+
+
+
+insert into eleitor values ( 1001 , 'Aline Santos', 1234567, 101 );
+
+insert into eleitor values ( 1002 , 'Carlos Renato', 1234568, 101 );
+
+insert into eleitor values ( 1003 , 'Jorge Silva', 12345679, 103 );
+
+insert into eleitor values ( 1004 , 'Marina Magalhaes', 12345680, 105 );
+
+insert into eleitor values ( 1005 , 'Thais Roberta', 12345681, 105 );
+
+insert into eleitor values ( 1006 , 'Julia Maria', 12345682, 106 );
+
+insert into eleitor values ( 1007 , 'Juliana Pires', 12345683, 103 );
+
+
+
+insert into cargopolitico values ( 10001 , 'Prefeito', 1 );
+
+insert into cargopolitico values ( 10002 , 'Prefeito', 2 );
+
+insert into cargopolitico values ( 10003 , 'Vereador', 1 );
+
+insert into cargopolitico values ( 10004 , 'Vereador', 2 );
+
+insert into cargopolitico values ( 10005 , 'Vice Prefeito', 1 );
+
+insert into cargopolitico values ( 10006 , 'Vice Prefeito', 2 );
+
+
+
+insert into partidoPolitico values ( 'pa', 'Partido dos Alunos', 58 );
+
+insert into partidoPolitico values ( 'pp', 'Partido dos Professores', 79 );
+
+insert into partidoPolitico values ( 'pl', 'Partido da Galera da Limpeza', 82 );
+
+
+insert into candidato values ( 58, 'Pedro Jose', 'PJ', 10001, 'pa' );
+
+insert into candidato values ( 59, 'Raquel Souza', 'Raquelzinha', 10002, 'pa' )
+
+insert into candidato values ( 79, 'Julio Souza', 'Julinho da Forca', 10001, 'pp' );
+
+insert into candidato values ( 80, 'Mara Maria', 'mm', 10002, 'pp' );
+
+insert into candidato values ( 82, 'Roberto Carlos', 'Varre Cantando', 10001, 'pl' );
+
+
